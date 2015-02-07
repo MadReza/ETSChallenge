@@ -2,8 +2,25 @@
       xmlns:app="http://schemas.android.com/apk/res-auto"
       xmlns:tools="http://schemas.android.com/tools"
       tools:context=".MainActivity">
+    <item android:id="@+id/action_personalize_me"
+          android:title="@string/action_personalize_me"
+          android:orderInCategory="100"
+          app:showAsAction="never"/>
+    <item android:id="@+id/action_er_Contacts"
+          android:title="@string/action_er_Contacts"
+          android:orderInCategory="100"
+          app:showAsAction="never"/>
+    <item android:id="@+id/action_fun_facts"
+          android:title="@string/action_fun_facts"
+          android:orderInCategory="100"
+          app:showAsAction="never"/>
     <item android:id="@+id/action_settings"
           android:title="@string/action_settings"
           android:orderInCategory="100"
           app:showAsAction="never"/>
+    <item android:id="@+id/action_faq"
+          android:title="@string/action_faq"
+          android:orderInCategory="100"
+          app:showAsAction="never"/>
+
 </menu>

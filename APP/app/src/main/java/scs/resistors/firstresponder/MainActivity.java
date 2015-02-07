@@ -1,7 +1,8 @@
 package scs.resistors.firstresponder;
 
-import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -13,7 +14,6 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -31,7 +31,16 @@ public class MainActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+
+        } else if (id == R.id.action_personalize_me) {
+
+        } else if (id == R.id.action_fun_facts) {
+            Intent intent = new Intent (this, DidYouKnowActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.action_settings) {
+
+        } else if (id == R.id.action_faq) {
+
         }
 
         return super.onOptionsItemSelected(item);
