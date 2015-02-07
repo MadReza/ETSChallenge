@@ -45,17 +45,27 @@
         android:layout_height="wrap_content"
         android:id="@+id/panic"
         android:src="@drawable/panic"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:clickable="true"/>
+        android:clickable="true"
+        android:layout_below="@+id/into"
+        android:layout_centerHorizontal="true"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="MUHAHAHA"
-        android:textSize="18sp"
+        android:textSize="12sp"
         android:id="@+id/into"
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textStyle="bold"
+        android:id="@+id/cancelTextView"
+        android:layout_below="@+id/panic"
+        android:layout_centerHorizontal="true"
+        android:textSize="16sp"/>
 
 </RelativeLayout>

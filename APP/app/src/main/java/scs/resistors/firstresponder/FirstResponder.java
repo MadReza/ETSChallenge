@@ -7,13 +7,17 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class FirstResponder extends ActionBarActivity {
+
+    static int counter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first_responder);
+        counter = 0;
 
         Button personalizeButton = (Button) findViewById(R.id.personalizeButton);
         personalizeButton.setOnClickListener(new View.OnClickListener() {
@@ -33,21 +37,25 @@ public class FirstResponder extends ActionBarActivity {
             }
         });
 
-        ImageView panicImageView = (ImageView) findViewById(R.id.panic);
+        final ImageView panicImageView = (ImageView) findViewById(R.id.panic);
+        final TextView cancelTextView = (TextView) findViewById(R.id.cancelTextView);
+        cancelTextView.setVisibility(View.INVISIBLE);
         panicImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                cancelTextView.setVisibility(View.VISIBLE);
+                panicImageView.setClickable(false);
                 new CountDownTimer(30000, 1000) {
                     public void onTick(long millisUntilFinished) {
-                        mTextField.setText
-                                ("seconds remaining before action starts: "
-                                        + millisUntilFinished / 1000);
+                        cancelTextView.setText
+                                ("seconds before ER action starts: "
+                                        + millisUntilFinished / 1000
+                                                + "\n Press back button to avoid it.");
                     }
                     public void onFinish() {
-                        mTextField.setText("done!");
+                        // WORK HAPPESNS HERE
                     }
                 }.start();
-
             }
         });
     }
