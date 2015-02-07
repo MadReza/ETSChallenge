@@ -18,5 +18,6 @@
     <string name="wiki_register">Healthy Tips Notification</string>
     <string name="prefs">MyPrefs</string>
     <string name="wiki_pref">WikiPref</string>
+    <string name="title_activity_first_responder">FirstResponder</string>
 
 </resources>
