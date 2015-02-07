@@ -1,6 +1,8 @@
 package scs.resistors.firstresponder;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -8,10 +10,20 @@ import android.view.MenuItem;
 
 public class MainActivity extends ActionBarActivity {
 
+    SharedPreferences sharedpreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        sharedpreferences = getSharedPreferences(this.getString(R.string.prefs), 0);
+        if (!sharedpreferences.contains(this.getString(R.string.wiki_pref)))
+        {
+            Editor editor = sharedpreferences.edit();
+            editor.putInt(this.getString(R.string.wiki_pref), 0); // By default not registered
+            editor.commit();
+        }
     }
 
     @Override

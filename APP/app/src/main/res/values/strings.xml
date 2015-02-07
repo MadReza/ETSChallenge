@@ -15,5 +15,8 @@
     <string name="login_register">Register</string>
     <string name="action_faq">FAQ</string>
     <string name="title_activity_did_you_know">DidYouKnow</string>
+    <string name="wiki_register">Healthy Tips Notification</string>
+    <string name="prefs">MyPrefs</string>
+    <string name="wiki_pref">WikiPref</string>
 
 </resources>
