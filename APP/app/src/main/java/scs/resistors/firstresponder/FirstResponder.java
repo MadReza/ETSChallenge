@@ -6,6 +6,9 @@ import android.content.SharedPreferences;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
@@ -15,11 +18,17 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.IOException;
+import java.util.Timer;
+
 public class FirstResponder extends ActionBarActivity {
 
     double latitude;
     double longitude;
     private LocationManager locationManager;
+    Uri myUri = Uri.EMPTY;
+    MediaPlayer mediaPlayer;
+    boolean playerReady = false;
 
     LocationListener locationListener = new LocationListener() {
 
@@ -57,6 +66,22 @@ public class FirstResponder extends ActionBarActivity {
                 0,
                 locationListener);
 
+        myUri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.sirencut);
+        mediaPlayer = new MediaPlayer();
+        mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                playerReady = true;
+            }
+        });
+        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        try {
+            mediaPlayer.setDataSource(getApplicationContext(), myUri);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        mediaPlayer.prepareAsync();
+
         final Button personalizeButton = (Button) findViewById(R.id.personalizeButton);
         personalizeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,7 +116,21 @@ public class FirstResponder extends ActionBarActivity {
                 erContactsButton.setClickable(false);
                 personalizeButton.setClickable(false);
 
-                // Trigger sound shit
+                if (playerReady) {
+                    playerReady = false;
+                    mediaPlayer.start();
+                    Timer timer = new Timer();
+                    timer.schedule(new java.util.TimerTask() {
+
+                        @Override
+                        public void run() {
+                            mediaPlayer.pause();
+                            mediaPlayer.seekTo(0);
+                            playerReady = true;
+                        }
+                    }, 5000);
+                }
+
                 new CountDownTimer(10000, 1000) {
                     public void onTick(long millisUntilFinished) {
                         cancelTextView.setText
