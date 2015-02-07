@@ -306,7 +306,7 @@ public class EmergencyContacts extends ActionBarActivity {
         editor.putInt("itemsAdded", itemsAdded);
         editor.putInt("itemsDeleted", itemsDeleted);
 
-        editor.apply();
+        editor.commit();
 
         Toast.makeText(this, "Contacts Saved.",
                 Toast.LENGTH_LONG).show();
