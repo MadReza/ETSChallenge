@@ -29,5 +29,8 @@
     <string name="calorie_add">Add Activity</string>
     <string name="title_activity_faq">FAQ Activity</string>
     <string name="title_activity_personalize_me">Personalize Me</string>
+    <string name="req1">You need to give emergency contact numbers in order to use the PANICK MODE.</string>
+    <string name="req2">Partial and/or full Personal data has been entered, you can still change it or change your emergency contact info.</string>
+    <string name="req3">No personal data has been entered, you can still enter it and/or change your emergency contact info.</string>
 
 </resources>
