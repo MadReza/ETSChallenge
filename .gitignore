@@ -27,3 +27,4 @@ proguard/
 
 # everything here?
 .idea/*
+APP/.idea/*
