@@ -52,7 +52,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="MUHAHAHA"
+        android:text=""
         android:textSize="12sp"
         android:id="@+id/into"
         android:layout_below="@+id/textView"
@@ -61,11 +61,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=""
+        android:text="Click Me to start ER Action!"
         android:textStyle="bold"
         android:id="@+id/cancelTextView"
         android:layout_below="@+id/panic"
-        android:layout_centerHorizontal="true"
+        android:gravity="center"
         android:textSize="16sp"/>
 
 </RelativeLayout>

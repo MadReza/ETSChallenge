@@ -45,6 +45,7 @@ public class FirstResponder extends ActionBarActivity {
             public void onClick(View v) {
                 cancelTextView.setVisibility(View.VISIBLE);
                 panicImageView.setClickable(false);
+                // Trigger sound shit
                 new CountDownTimer(30000, 1000) {
                     public void onTick(long millisUntilFinished) {
                         cancelTextView.setText
@@ -54,6 +55,12 @@ public class FirstResponder extends ActionBarActivity {
                     }
                     public void onFinish() {
                         // WORK HAPPESNS HERE
+
+
+                        // end up going to displayActivity
+                        Intent intent = new Intent (getApplicationContext(),
+                                InfoDisplayActivity.class);
+                        startActivity(intent);
                     }
                 }.start();
             }
