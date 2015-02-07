@@ -52,6 +52,9 @@ public class MainActivity extends ActionBarActivity {
 
         } else if (id == R.id.action_faq) {
 
+        }else if(id == R.id.action_calorie){
+            Intent intent = new Intent (this, CalorieCounterActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
