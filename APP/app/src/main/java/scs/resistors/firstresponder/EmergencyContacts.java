@@ -17,7 +17,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 public class EmergencyContacts extends ActionBarActivity {
 
     public static final String SETTINGS_CONTACT = "SETTINGS_CONTACT";
@@ -330,6 +329,4 @@ public class EmergencyContacts extends ActionBarActivity {
                 FirstResponder.class);
         startActivity(intent);
     }
-
-
 }
