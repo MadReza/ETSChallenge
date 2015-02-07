@@ -2,8 +2,6 @@ package scs.resistors.firstresponder;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -23,6 +21,9 @@ public class CalorieCounterActivity extends ActionBarActivity {
     private static double[] ACTIVITIES_CALS_PER_MIN= {9.38, 7.03, 2.86, 8.22, 4.7, 14.06};
 
     private ArrayList<String> listViewContents = new ArrayList<String>();
+    private ArrayList<String> listViewContentsNames = new ArrayList<String>();
+    private ArrayList<Integer> listViewContentsMinutes = new ArrayList<Integer>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,9 +45,13 @@ public class CalorieCounterActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 EditText numOfMin = (EditText) findViewById(R.id.editTextCalorieTime);
+                String name = spinnerActivities.getSelectedItem().toString();
                 int minutes = Integer.parseInt(numOfMin.getText().toString());
-                String value = spinnerActivities.getSelectedItem().toString() + "*" + minutes;
-                listViewContents.add(value);
+                listViewContentsNames.add(name);
+                listViewContentsMinutes.add(minutes);
+
+                listViewContents.add(minutes+ " minutes of " + name);
+
                 recalculateTotalCaloriesBurnt();
                 ListView listView = (ListView) findViewById(R.id.listViewCalorieActivities);
                 listView.invalidateViews();
@@ -58,41 +63,10 @@ public class CalorieCounterActivity extends ActionBarActivity {
     private void recalculateTotalCaloriesBurnt(){
         double totalCalories = 0;
         ListView listView = (ListView) findViewById(R.id.listViewCalorieActivities);
-        int count = listView.getAdapter().getCount();
-        for(int i = 0; i < count; i++){
-            Object o = listView.getAdapter().getItem(i);
-            if(o instanceof String){
-                String temp = (String)o;
-                String key = temp.substring(0, temp.indexOf("*"));
-                int minutes = Integer.parseInt(temp.substring(temp.indexOf("*") + 1));
-                double value = activitiesMap.get(key);
-                totalCalories += (value * minutes);
-            }
-        }
+        for(int i = 0; i < listViewContentsMinutes.size(); i++)
+                totalCalories += (activitiesMap.get(listViewContentsNames.get(i)) * listViewContentsMinutes.get(i));
         // put new value in text view
         TextView calorieTextView = (TextView) findViewById(R.id.textViewCalorieTotal);
-        calorieTextView.setText(""+totalCalories);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_calorie_counter, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        calorieTextView.setText(String.format("%.2f",totalCalories));
     }
 }
