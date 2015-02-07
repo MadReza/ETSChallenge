@@ -6,14 +6,13 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/health_toolbox"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
-
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -21,10 +20,16 @@
         </activity>
 
         <activity
+            android:name=".InfoDisplayActivity"
+            android:label="@string/title_activity_info_display"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
             android:name=".DidYouKnowActivity"
             android:label="BACK TO PANICK MODE!"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="scs.resistors.firstresponder.MainActivity" />
@@ -34,13 +39,17 @@
             android:name=".EmergencyContacts"
             android:label="ER Contact"
             android:screenOrientation="portrait">
-
          </activity>
 
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login"
             android:screenOrientation="portrait">
+        </activity>
+
+        <activity
+            android:name=".CalorieCounterActivity"
+            android:label="@string/title_activity_calorie_counter" >
         </activity>
 
     </application>
