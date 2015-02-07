@@ -23,7 +23,8 @@
             android:focusable="true"
             android:adjustViewBounds="true"
             android:scaleType="fitXY"
-            android:src="@drawable/alarm"/>
+            android:src="@drawable/alarm"
+            android:clickable="true"/>
 
         <ImageView
             android:layout_width="150dp"
@@ -32,7 +33,8 @@
             android:focusable="true"
             android:adjustViewBounds="true"
             android:scaleType="fitXY"
-            android:src="@drawable/didyouknow"/>
+            android:src="@drawable/didyouknow"
+            android:clickable="true"/>
     </LinearLayout>
 
     <ImageView
@@ -43,7 +45,8 @@
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
         android:src="@drawable/health_toolbox"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"
+        android:clickable="true"/>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   android:layout_width="wrap_content"
@@ -58,7 +61,8 @@
             android:focusable="true"
             android:adjustViewBounds="true"
             android:scaleType="fitXY"
-            android:src="@drawable/health_toolbox"/>
+            android:src="@drawable/health_toolbox"
+            android:clickable="true"/>
 
         <ImageView
             android:layout_width="150dp"
@@ -67,7 +71,8 @@
             android:focusable="true"
             android:adjustViewBounds="true"
             android:scaleType="fitXY"
-            android:src="@drawable/health_toolbox"/>
+            android:src="@drawable/faqicon"
+            android:clickable="true"/>
 
     </LinearLayout>
 
