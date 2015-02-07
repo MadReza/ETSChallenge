@@ -2,7 +2,5 @@
       xmlns:app="http://schemas.android.com/apk/res-auto"
       xmlns:tools="http://schemas.android.com/tools"
       tools:context="scs.resistors.firstresponder.DidYouKnowActivity">
-    <item android:id="@+id/wiki_register"
-          android:title="@string/wiki_register"
-          android:orderInCategory="100"/>
+
 </menu>

@@ -7,6 +7,7 @@
         android:icon="@drawable/health_toolbox"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -27,7 +28,7 @@
             android:name=".DidYouKnowActivity"
             android:label="BACK TO PANICK MODE!"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="scs.resistors.firstresponder.MainActivity" />
@@ -41,7 +42,8 @@
 
         <activity
             android:name=".CalorieCounterActivity"
-            android:label="@string/title_activity_calorie_counter" >
+            android:label="@string/title_activity_calorie_counter"
+            android:screenOrientation="portrait">
         </activity>
 
     </application>
