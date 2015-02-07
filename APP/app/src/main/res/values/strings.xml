@@ -28,5 +28,6 @@
     <string name="calorie_total">Your total calories burnt:</string>
     <string name="calorie_add">Add Activity</string>
     <string name="title_activity_faq">FAQActivity</string>
+    <string name="title_activity_personalize_me">PersonalizeMe</string>
 
 </resources>

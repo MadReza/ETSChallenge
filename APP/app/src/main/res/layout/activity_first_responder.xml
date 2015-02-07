@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Input ER Contacts"
-        android:id="@+id/button"
+        android:id="@+id/erContactsButton"
         android:background="@android:color/white"
         android:textColor="#FF3A8AEC"
         android:layout_alignParentBottom="true"
@@ -35,10 +35,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Personalize Me!"
-        android:id="@+id/button3"
+        android:id="@+id/personalizeButton"
         android:textColor="#FF3A8AEC"
         android:background="@android:color/white"
-        android:layout_above="@+id/button"/>
+        android:layout_above="@+id/erContactsButton"/>
 
     <ImageView
         android:layout_width="wrap_content"
