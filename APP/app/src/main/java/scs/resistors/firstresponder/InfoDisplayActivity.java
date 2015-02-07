@@ -1,6 +1,7 @@
 package scs.resistors.firstresponder;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -9,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,7 +21,7 @@ public class InfoDisplayActivity extends Activity
     public final static String ITEM_CAPTION = "caption";
 
     // Section Contents
-    private final static String[] contacts = new String[]{"Natacha 514-555-1234", "Alex 450-123-4321", "Amine 911-123-4312", "Reza 514-666-9999"};
+    private ArrayList<String> contacts = new ArrayList<String>();
     private final static String[] allergies = new String[]{"Life", "God", "Turtles"};
     private final static String[] problems = new String[]{"Siezures", "Diabetes I", "Asthma", "Cancer"};
     private final static String[] infos = new String[]{"Medical Card: 41231241512312451", "Hospital St-Jerome", "Pokemon Insurance"};
@@ -36,12 +38,29 @@ public class InfoDisplayActivity extends Activity
     }
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        // Add contacts from shared prefs
+        SharedPreferences settings = getPreferences(MODE_PRIVATE);
+        contacts.clear();
+        for(int i = 1; i <= 3; i++)
+            getContact(settings, "contact"+i+"name","contact"+i+"phone");
+    }
+
+    @Override
     public void onCreate(Bundle icicle)
     {
         super.onCreate(icicle);
 
         // Sets the View Layer
         setContentView(R.layout.activity_info_display);
+
+        // Add contacts from shared prefs
+        SharedPreferences settings = getPreferences(MODE_PRIVATE);
+
+        for(int i = 1; i <= 3; i++)
+            getContact(settings, "contact"+i+"name","contact"+i+"phone");
 
         // Create the ListView Adapter
         adapter = new SeparatedListAdapter(this);
@@ -66,6 +85,14 @@ public class InfoDisplayActivity extends Activity
                 Toast.makeText(getApplicationContext(), item, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void getContact(SharedPreferences settings, String nameStr, String phoneStr){
+        String name = settings.getString(nameStr, null);
+        String phone = settings.getString(phoneStr, null);
+        if(name != null && phone != null){
+            contacts.add(name + " " + phone);
+        }
     }
 
 }
