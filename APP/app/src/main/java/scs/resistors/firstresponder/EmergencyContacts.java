@@ -17,7 +17,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 public class EmergencyContacts extends ActionBarActivity {
 
     public static final String SETTINGS_CONTACT = "SETTINGS_CONTACT";
@@ -50,26 +49,45 @@ public class EmergencyContacts extends ActionBarActivity {
             itemsDeleted = settings.getInt("itemsDeleted", itemsDeleted);
         }
 
+        String tempPhone;
         if (settings.contains("contact1name") && settings.contains("contact1phone")) {
             output1.setText(settings.getString("contact1name", "Name") +
                     "          Phone #: " +
                     settings.getString("contact1phone", ""));
             nameArray[0] = settings.getString("contact1name", "Name");
-            phoneArray[0] = settings.getString("contact1phone", "");
+            tempPhone = settings.getString("contact1phone", "");
+            phoneArray[0] = "";
+            for (int i = 0; i < tempPhone.length(); ++i) {
+                if (Character.isDigit(tempPhone.charAt(i))) {
+                    phoneArray[0] += tempPhone.charAt(i);
+                }
+            }
         }
         if (settings.contains("contact2name") && settings.contains("contact2phone")) {
             output2.setText(settings.getString("contact2name", "Name") +
                     "          Phone #: " +
                     settings.getString("contact2phone", ""));
             nameArray[1] = settings.getString("contact2name", "Name");
-            phoneArray[1] = settings.getString("contact2phone", "");
+            tempPhone = settings.getString("contact2phone", "");
+            phoneArray[1] = "";
+            for (int i = 0; i < tempPhone.length(); ++i) {
+                if (Character.isDigit(tempPhone.charAt(i))) {
+                    phoneArray[1] += tempPhone.charAt(i);
+                }
+            }
         }
         if (settings.contains("contact3name") && settings.contains("contact3phone")) {
             output3.setText(settings.getString("contact3name", "Name") +
                     "          Phone #: " +
                     settings.getString("contact3phone", ""));
             nameArray[2] = settings.getString("contact3name", "Name");
-            phoneArray[2] = settings.getString("contact3phone", "");
+            tempPhone = settings.getString("contact3phone", "");
+            phoneArray[2] = "";
+            for (int i = 0; i < tempPhone.length(); ++i) {
+                if (Character.isDigit(tempPhone.charAt(i))) {
+                    phoneArray[2] += tempPhone.charAt(i);
+                }
+            }
         }
 
         Button deleteButton = (Button) findViewById(R.id.btn_delete_contact);
@@ -84,7 +102,6 @@ public class EmergencyContacts extends ActionBarActivity {
         }
         else
             addButton.setVisibility(View.VISIBLE);
-
     }
 
 
@@ -272,7 +289,7 @@ public class EmergencyContacts extends ActionBarActivity {
     }
 
     public void done(View view){
-        SharedPreferences settings = getSharedPreferences(SETTINGS_CONTACT,MODE_PRIVATE);
+        SharedPreferences settings = getSharedPreferences(SETTINGS_CONTACT, MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
 
         if (nameArray[0] != "None") {
@@ -308,9 +325,8 @@ public class EmergencyContacts extends ActionBarActivity {
 
         editor.commit();
 
-        Toast.makeText(this, "Contacts Saved.",
-                Toast.LENGTH_LONG).show();
+        Intent intent = new Intent (getApplicationContext(),
+                FirstResponder.class);
+        startActivity(intent);
     }
-
-
 }
