@@ -65,10 +65,11 @@ public class FirstResponder extends ActionBarActivity {
                     }
                     public void onFinish() {
                         // WORK HAPPESNS HERE
-                        SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+                        SharedPreferences prefs = getSharedPreferences(EmergencyContacts.SETTINGS_CONTACT, MODE_PRIVATE);
                         String phoneNo1 = prefs.getString("contact1phone", null);
                         String phoneNo2 = prefs.getString("contact2phone", null);
                         String phoneNo3 = prefs.getString("contact3phone", null);
+
                         String msg = getResources().getString(R.string.SmsMessage);
 
                         SmsManager smsManager = SmsManager.getDefault();
