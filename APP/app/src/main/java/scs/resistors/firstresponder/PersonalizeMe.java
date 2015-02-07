@@ -1,5 +1,6 @@
 package scs.resistors.firstresponder;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -31,6 +32,9 @@ public class PersonalizeMe extends ActionBarActivity {
                 edit.putString("information",str);
                 edit.apply();
                 Toast.makeText(PersonalizeMe.this, "Information Saved.", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent (getApplicationContext(),
+                            MainActivity.class);
+                startActivity(intent);
             }
         });
     }
