@@ -32,6 +32,6 @@
     <string name="req1">You need to give emergency contact numbers in order to use the PANICK MODE.</string>
     <string name="req2">Partial and/or full Personal data has been entered, you can still change it or change your emergency contact info.</string>
     <string name="req3">No personal data has been entered, you can still enter it and/or change your emergency contact info.</string>
-    <string name="SmsMessage">Emergency - The Health Toolbox! My life could be at risk and I believe I require medical care. Hopefully my location will reach you soon.</string>
+    <string name="SmsMessage">Emergency! My life could be at risk and I believe I require medical care. Hopefully my location will reach you soon.\n - sent from The Health Toolbox</string>
 
 </resources>

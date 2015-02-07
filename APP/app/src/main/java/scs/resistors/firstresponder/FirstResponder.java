@@ -21,7 +21,6 @@ public class FirstResponder extends ActionBarActivity {
     double latitude;
     double longitude;
 
-    LocationManager manager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
     LocationListener listener = new LocationListener() {
 
         @Override
@@ -133,6 +132,7 @@ public class FirstResponder extends ActionBarActivity {
                 }.start();
             }
         });
+        LocationManager manager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, listener);
     }
 }
