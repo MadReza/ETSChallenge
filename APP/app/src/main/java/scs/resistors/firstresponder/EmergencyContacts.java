@@ -12,21 +12,24 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
 public class EmergencyContacts extends ActionBarActivity {
 
-    public TextView outputText;
     private static final int CONTACT_PICKER_RESULT = 1001;
     private int currentIndex = 1;
+    private int itemsDeleted = 3;
+    private int itemsAdded = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emergency_contacts);
-
+        Button deleteButton = (Button) findViewById(R.id.btn_delete_contact);
+        deleteButton.setVisibility(View.INVISIBLE);
     }
 
 
@@ -70,15 +73,6 @@ public class EmergencyContacts extends ActionBarActivity {
                         // get the contact id from the Uri
                         String id = result.getLastPathSegment();
 
-                        // query for everything email
-
-//                        cursor = getContentResolver().query(Identity.CONTENT_URI,
-//                                null,Identity.CONTACT_ID, new String[] { id },
-//                                null);
-
-                        //String whereName = ContactsContract.Data.MIMETYPE + " = ?";
-                        //String[] whereNameParams = new String[] { ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE };
-
                         String whereName = ContactsContract.Data.MIMETYPE + " = ? AND " + ContactsContract.CommonDataKinds.StructuredName.CONTACT_ID + " = ?";
                         String[] whereNameParams = new String[] { ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE, id };
 
@@ -118,25 +112,36 @@ public class EmergencyContacts extends ActionBarActivity {
                             phoneCursor.close();
                         }
                         TextView output = (TextView) findViewById(R.id.txt_output1);
-
+                        itemsDeleted--;
                         switch (currentIndex) {
                             case 1:
                                 output = (TextView) findViewById(R.id.txt_output1);
                                 currentIndex++;
+                                itemsAdded++;
                                 break;
                             case 2:
                                 output = (TextView) findViewById(R.id.txt_output2);
                                 currentIndex++;
+                                itemsAdded++;
                                 break;
                             case 3:
                                 output = (TextView) findViewById(R.id.txt_output3);
                                 currentIndex = 1;
+                                itemsAdded++;
                                 break;
                             default:
                                 currentIndex = 1;
                                 break;
                         }
                         output.setText(name + "          Phone #: " + phone);
+                        if (itemsAdded == 3) {
+                            Button addButton = (Button) findViewById(R.id.btn_add_contacts);
+                            addButton.setVisibility(View.INVISIBLE);
+                        }
+                        if (itemsAdded > 0) {
+                            Button deleteButton = (Button) findViewById(R.id.btn_delete_contact);
+                            deleteButton.setVisibility(View.VISIBLE);
+                        }
                         if (name.length() == 0) {
                             Toast.makeText(this, "No name found for contact.",
                                     Toast.LENGTH_LONG).show();
@@ -156,6 +161,52 @@ public class EmergencyContacts extends ActionBarActivity {
         Intent contactPickerIntent = new Intent(Intent.ACTION_PICK,
                 Contacts.CONTENT_URI);
         startActivityForResult(contactPickerIntent, CONTACT_PICKER_RESULT);
+    }
+
+    public void deleteContact (View view) {
+
+        itemsAdded--;
+        TextView output = (TextView) findViewById(R.id.txt_output1);
+        if (currentIndex == 1)
+            currentIndex = 3;
+        else
+            currentIndex--;
+        switch (currentIndex) {
+            case 1:
+                output = (TextView) findViewById(R.id.txt_output1);
+                break;
+            case 2:
+                output = (TextView) findViewById(R.id.txt_output2);
+                break;
+            case 3:
+                output = (TextView) findViewById(R.id.txt_output3);
+                break;
+            default:
+                break;
+        }
+
+        if (itemsAdded == 3) {
+            Button addButton = (Button) findViewById(R.id.btn_add_contacts);
+            addButton.setVisibility(View.INVISIBLE);
+        }
+
+        if (output.getText() != "None") {
+            output.setText("None");
+            itemsDeleted++;
+        }
+
+        if (itemsDeleted > 0) {
+            Button addButton = (Button) findViewById(R.id.btn_add_contacts);
+            addButton.setVisibility(View.VISIBLE);
+        }
+
+        Button deleteButton = (Button) findViewById(R.id.btn_delete_contact);
+        if (itemsDeleted == 3) {
+            deleteButton.setVisibility(View.INVISIBLE);
+        }
+        else
+            deleteButton.setVisibility(View.VISIBLE);
+
     }
 
 }
