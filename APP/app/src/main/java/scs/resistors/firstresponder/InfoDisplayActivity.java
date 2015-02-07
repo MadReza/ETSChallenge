@@ -22,9 +22,7 @@ public class InfoDisplayActivity extends Activity
 
     // Section Contents
     private ArrayList<String> contacts = new ArrayList<String>();
-    private final static String[] allergies = new String[]{"Life", "God", "Turtles"};
-    private final static String[] problems = new String[]{"Seizures", "Diabetes I", "Asthma", "Cancer"};
-    private final static String[] infos = new String[]{"Medical Card: 41231241512312451", "Hospital St-Jerome", "Pokemon Insurance"};
+    private ArrayList<String> infos = new ArrayList<String>();
 
     // Adapter for ListView Contents
     private SeparatedListAdapter adapter;
@@ -66,13 +64,18 @@ public class InfoDisplayActivity extends Activity
         for(int i = 1; i <= 3; i++)
             getContact(settings, "contact"+i+"name","contact"+i+"phone");
 
+        SharedPreferences settings2 = getSharedPreferences(PersonalizeMe.SETTINGS_INFORMATION, MODE_PRIVATE);
+        String infoStr = settings2.getString("information", null);
+        if(infoStr == null)
+            infoStr = "No additional info.";
+        //"My Allergies are peanuts, shrimp, and tomatoes.\nMedical Card: 41231241512312451\nHospital St-Jerome\nPokemon Insurance"
+        infos.clear();
+        infos.add(infoStr);
         // Create the ListView Adapter
         adapter = new SeparatedListAdapter(this);
 
-        adapter.addSection("My Allergies", new ArrayAdapter<String>(this, R.layout.list_item, allergies));
-        adapter.addSection("My Common Issues", new ArrayAdapter<String>(this, R.layout.list_item, problems));
         adapter.addSection("My Contacts", new ArrayAdapter<String>(this, R.layout.list_item, contacts));
-        adapter.addSection("My Info", new ArrayAdapter<String>(this, R.layout.list_item, infos));
+        adapter.addSection("My Information", new ArrayAdapter<String>(this, R.layout.list_item, infos));
 
 
         // Get a reference to the ListView holder
