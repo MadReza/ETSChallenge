@@ -61,7 +61,7 @@
             android:focusable="true"
             android:adjustViewBounds="true"
             android:scaleType="fitXY"
-            android:src="@drawable/health_toolbox"
+            android:src="@drawable/calory"
             android:clickable="true"/>
 
         <ImageView
