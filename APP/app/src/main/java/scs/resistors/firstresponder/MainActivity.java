@@ -15,7 +15,6 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -36,8 +35,8 @@ public class MainActivity extends ActionBarActivity {
         } else if (id == R.id.action_personalize_me) {
 
         } else if (id == R.id.action_fun_facts) {
-            Intent intent = new Intent ();
-            //startActivity(intent);
+            Intent intent = new Intent (this, DidYouKnowActivity.class);
+            startActivity(intent);
         } else if (id == R.id.action_settings) {
 
         } else if (id == R.id.action_faq) {

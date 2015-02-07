@@ -16,7 +16,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".funfacts.DidYouKnow"
+            android:name=".DidYouKnowActivity"
             android:label="@string/title_activity_did_you_know"
             android:parentActivityName=".MainActivity" >
             <meta-data

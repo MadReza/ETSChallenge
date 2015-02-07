@@ -1,16 +1,16 @@
-package scs.resistors.firstresponder.funfacts;
+package scs.resistors.firstresponder;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import scs.resistors.firstresponder.R;
+import scs.resistors.firstresponder.funfacts.ColorWheel;
+import scs.resistors.firstresponder.funfacts.FactBook;
 
-
-public class DidYouKnow extends Activity {
+public class DidYouKnowActivity extends ActionBarActivity {
 
     private FactBook mFactBook = new FactBook();
     private ColorWheel mColorWheel = new ColorWheel();
@@ -19,6 +19,7 @@ public class DidYouKnow extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_did_you_know);
+        getActionBar().hide();
 
         final TextView factLabel = (TextView) findViewById(R.id.funFactText);
         final Button showFactButton = (Button) findViewById(R.id.showFactButton);
@@ -32,7 +33,6 @@ public class DidYouKnow extends Activity {
 
                 int color = mColorWheel.getColor();
                 relativeLayout.setBackgroundColor(color);
-                showFactButton.setTextColor(color);
             }
         };
         showFactButton.setOnClickListener(listener);
