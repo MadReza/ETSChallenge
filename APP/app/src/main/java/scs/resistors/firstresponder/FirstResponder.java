@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -13,15 +14,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.location.LocationListener;
 
 public class FirstResponder extends ActionBarActivity {
 
-    static int counter;
     double latitude;
     double longitude;
+    private LocationManager locationManager;
 
-    LocationListener listener = new LocationListener() {
+    LocationListener locationListener = new LocationListener() {
 
         @Override
         public void onStatusChanged(String provider, int status, Bundle extras) {
@@ -51,7 +51,11 @@ public class FirstResponder extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first_responder);
-        counter = 0;
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+                0,
+                0,
+                locationListener);
 
         final Button personalizeButton = (Button) findViewById(R.id.personalizeButton);
         personalizeButton.setOnClickListener(new View.OnClickListener() {
@@ -93,8 +97,9 @@ public class FirstResponder extends ActionBarActivity {
                         cancelTextView.setText
                                 ("seconds before ER action starts: "
                                         + millisUntilFinished / 1000
-                                                + "\n Press back button to avoid it.");
+                                        + "\n Press back button to avoid it.");
                     }
+
                     public void onFinish() {
                         SharedPreferences prefs = getSharedPreferences(EmergencyContacts.SETTINGS_CONTACT, MODE_PRIVATE);
                         String phoneNo1 = prefs.getString("contact1phone", null);
@@ -106,33 +111,34 @@ public class FirstResponder extends ActionBarActivity {
                         SmsManager smsManager = SmsManager.getDefault();
                         if (null != smsManager) {
                             if (null != phoneNo1) {
+                                if (latitude != 0 || longitude != 0) {
+                                    msg += "https://www.google.com.au/maps/preview/@"
+                                            + latitude + "," + longitude + "," + "8z";
+                                }
                                 smsManager.sendTextMessage(phoneNo1, null, msg, null, null);
-                                smsManager.sendTextMessage(phoneNo3, null,
-                                        "https://www.google.com.au/maps/preview/@"
-                                                + latitude + "," + longitude + "," + "8z", null, null);
                             }
                             if (null != phoneNo2) {
+                                if (latitude != 0 || longitude != 0) {
+                                    msg += "https://www.google.com.au/maps/preview/@"
+                                            + latitude + "," + longitude + "," + "8z";
+                                }
                                 smsManager.sendTextMessage(phoneNo2, null, msg, null, null);
-                                smsManager.sendTextMessage(phoneNo3, null,
-                                        "https://www.google.com.au/maps/preview/@"
-                                                + latitude + "," + longitude + "," + "8z", null, null);
                             }
                             if (null != phoneNo3) {
-                                smsManager.sendTextMessage(phoneNo1, null, msg, null, null);
-                                smsManager.sendTextMessage(phoneNo3, null,
-                                        "https://www.google.com.au/maps/preview/@"
-                                                + latitude + "," + longitude + "," + "8z", null, null);
+                                if (latitude != 0 || longitude != 0) {
+                                    msg += "https://www.google.com.au/maps/preview/@"
+                                            + latitude + "," + longitude + "," + "8z";
+                                }
+                                smsManager.sendTextMessage(phoneNo3, null, msg, null, null);
                             }
                         }
                         // end up going to displayActivity
-                        Intent intent = new Intent (getApplicationContext(),
+                        Intent intent = new Intent(getApplicationContext(),
                                 InfoDisplayActivity.class);
                         startActivity(intent);
                     }
                 }.start();
             }
         });
-        LocationManager manager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
-        manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, listener);
     }
 }
