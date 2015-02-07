@@ -19,7 +19,7 @@ public class InfoDisplayActivity extends Activity
     public final static String ITEM_CAPTION = "caption";
 
     // Section Contents
-    private final static String[] contacts = new String[]{"Natasha 514-555-1234", "Alex 450-123-4321", "Amine 911-123-4312", "Reza 514-666-9999"};
+    private final static String[] contacts = new String[]{"Natacha 514-555-1234", "Alex 450-123-4321", "Amine 911-123-4312", "Reza 514-666-9999"};
     private final static String[] allergies = new String[]{"Life", "God", "Turtles"};
     private final static String[] problems = new String[]{"Siezures", "Diabetes I", "Asthma", "Cancer"};
     private final static String[] infos = new String[]{"Medical Card: 41231241512312451", "Hospital St-Jerome", "Pokemon Insurance"};
