@@ -56,8 +56,7 @@ public class FirstResponder extends ActionBarActivity {
                 personalizeButton.setClickable(false);
 
                 // Trigger sound shit
-
-                new CountDownTimer(30000, 1000) {
+                new CountDownTimer(10000, 1000) {
                     public void onTick(long millisUntilFinished) {
                         cancelTextView.setText
                                 ("seconds before ER action starts: "
@@ -72,9 +71,12 @@ public class FirstResponder extends ActionBarActivity {
                         String phoneNo3 = prefs.getString("contact3phone", null);
 
                         SmsManager smsManager = SmsManager.getDefault();
-                        smsManager.sendTextMessage(phoneNo1, null, getResources().getString(R.string.SmsMessage), null, null);
-                        smsManager.sendTextMessage(phoneNo2, null, getResources().getString(R.string.SmsMessage), null, null);
-                        smsManager.sendTextMessage(phoneNo3, null, getResources().getString(R.string.SmsMessage), null, null);
+                        if (null != phoneNo1)
+                            smsManager.sendTextMessage(phoneNo1, null, getResources().getString(R.string.SmsMessage), null, null);
+                        if (null != phoneNo2)
+                            smsManager.sendTextMessage(phoneNo2, null, getResources().getString(R.string.SmsMessage), null, null);
+                        if (null != phoneNo3)
+                            smsManager.sendTextMessage(phoneNo3, null, getResources().getString(R.string.SmsMessage), null, null);
 
                         // end up going to displayActivity
                         Intent intent = new Intent (getApplicationContext(),
