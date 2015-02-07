@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 public class EmergencyContacts extends ActionBarActivity {
 
+    public static final String SETTINGS_CONTACT = "SETTINGS_CONTACT";
     private static final int CONTACT_PICKER_RESULT = 1001;
     private int currentIndex = 0;
     private int itemsDeleted = 3;
@@ -32,7 +33,7 @@ public class EmergencyContacts extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emergency_contacts);
 
-        SharedPreferences settings = getPreferences(MODE_PRIVATE);
+        SharedPreferences settings = getSharedPreferences(SETTINGS_CONTACT,MODE_PRIVATE);
         TextView output1 = (TextView) findViewById(R.id.txt_output1);
         TextView output2 = (TextView) findViewById(R.id.txt_output2);
         TextView output3 = (TextView) findViewById(R.id.txt_output3);
@@ -271,7 +272,7 @@ public class EmergencyContacts extends ActionBarActivity {
     }
 
     public void done(View view){
-        SharedPreferences settings = getPreferences(MODE_PRIVATE);
+        SharedPreferences settings = getSharedPreferences(SETTINGS_CONTACT,MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
 
         if (nameArray[0] != "None") {
@@ -305,7 +306,7 @@ public class EmergencyContacts extends ActionBarActivity {
         editor.putInt("itemsAdded", itemsAdded);
         editor.putInt("itemsDeleted", itemsDeleted);
 
-        editor.apply();
+        editor.commit();
 
         Toast.makeText(this, "Contacts Saved.",
                 Toast.LENGTH_LONG).show();

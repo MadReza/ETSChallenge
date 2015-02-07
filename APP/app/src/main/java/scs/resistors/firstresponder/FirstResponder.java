@@ -69,14 +69,15 @@ public class FirstResponder extends ActionBarActivity {
                         String phoneNo1 = prefs.getString("contact1phone", null);
                         String phoneNo2 = prefs.getString("contact2phone", null);
                         String phoneNo3 = prefs.getString("contact3phone", null);
+                        String msg = getResources().getString(R.string.SmsMessage);
 
                         SmsManager smsManager = SmsManager.getDefault();
                         if (null != phoneNo1)
-                            smsManager.sendTextMessage(phoneNo1, null, getResources().getString(R.string.SmsMessage), null, null);
+                            smsManager.sendTextMessage(phoneNo1, null, msg, null, null);
                         if (null != phoneNo2)
-                            smsManager.sendTextMessage(phoneNo2, null, getResources().getString(R.string.SmsMessage), null, null);
+                            smsManager.sendTextMessage(phoneNo2, null, msg, null, null);
                         if (null != phoneNo3)
-                            smsManager.sendTextMessage(phoneNo3, null, getResources().getString(R.string.SmsMessage), null, null);
+                            smsManager.sendTextMessage(phoneNo3, null, msg, null, null);
 
                         // end up going to displayActivity
                         Intent intent = new Intent (getApplicationContext(),

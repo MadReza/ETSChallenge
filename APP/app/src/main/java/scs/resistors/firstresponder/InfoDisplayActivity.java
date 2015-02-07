@@ -23,7 +23,7 @@ public class InfoDisplayActivity extends Activity
     // Section Contents
     private ArrayList<String> contacts = new ArrayList<String>();
     private final static String[] allergies = new String[]{"Life", "God", "Turtles"};
-    private final static String[] problems = new String[]{"Siezures", "Diabetes I", "Asthma", "Cancer"};
+    private final static String[] problems = new String[]{"Seizures", "Diabetes I", "Asthma", "Cancer"};
     private final static String[] infos = new String[]{"Medical Card: 41231241512312451", "Hospital St-Jerome", "Pokemon Insurance"};
 
     // Adapter for ListView Contents
@@ -42,10 +42,12 @@ public class InfoDisplayActivity extends Activity
         super.onRestart();
 
         // Add contacts from shared prefs
-        SharedPreferences settings = getPreferences(MODE_PRIVATE);
+        SharedPreferences settings = getSharedPreferences(EmergencyContacts.SETTINGS_CONTACT, MODE_PRIVATE);
+
         contacts.clear();
         for(int i = 1; i <= 3; i++)
             getContact(settings, "contact"+i+"name","contact"+i+"phone");
+        ((ListView) this.findViewById(R.id.infoList)).invalidateViews();
     }
 
     @Override
@@ -56,9 +58,11 @@ public class InfoDisplayActivity extends Activity
         // Sets the View Layer
         setContentView(R.layout.activity_info_display);
 
-        // Add contacts from shared prefs
-        SharedPreferences settings = getPreferences(MODE_PRIVATE);
 
+        // Add contacts from shared prefs
+        SharedPreferences settings = getSharedPreferences(EmergencyContacts.SETTINGS_CONTACT, MODE_PRIVATE);
+
+        contacts.clear();
         for(int i = 1; i <= 3; i++)
             getContact(settings, "contact"+i+"name","contact"+i+"phone");
 
@@ -90,9 +94,11 @@ public class InfoDisplayActivity extends Activity
     private void getContact(SharedPreferences settings, String nameStr, String phoneStr){
         String name = settings.getString(nameStr, null);
         String phone = settings.getString(phoneStr, null);
+
         if(name != null && phone != null){
             contacts.add(name + " " + phone);
         }
+
     }
 
 }
