@@ -13,10 +13,16 @@
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".InfoDisplayActivity"
+            android:label="@string/title_activity_info_display"
+            android:screenOrientation="portrait">
+        </activity>
+
         <activity
             android:name=".DidYouKnowActivity"
             android:label="BACK TO PANICK MODE!"
@@ -26,15 +32,18 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="scs.resistors.firstresponder.MainActivity" />
         </activity>
-        <activity
-            android:name=".LoginActivity"
-            android:label="@string/title_activity_login"
-            android:screenOrientation="portrait" >
-        </activity>
+
         <activity
             android:name=".FirstResponder"
-            android:label="@string/title_activity_first_responder" >
+            android:label="@string/title_activity_first_responder"
+            android:screenOrientation="portrait">
         </activity>
+
+        <activity
+            android:name=".CalorieCounterActivity"
+            android:label="@string/title_activity_calorie_counter" >
+        </activity>
+
     </application>
 
 </manifest>

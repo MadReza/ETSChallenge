@@ -23,7 +23,7 @@ public class MainActivity extends ActionBarActivity {
         // GET ImageView-elements
         ImageView didYouKnowImageView = (ImageView) findViewById(R.id.didYouKnowImageView);
         didYouKnowImageView.setDrawingCacheEnabled(true);
-        ImageView alarmImageView = (ImageView) findViewById(R.id.alarmImageView);
+        ImageView alarmImageView = (ImageView) findViewById(R.id.firstResponderImageView);
         alarmImageView.setDrawingCacheEnabled(true);
         ImageView toolBoxImageView = (ImageView) findViewById(R.id.toolBoxImageView);
         alarmImageView.setDrawingCacheEnabled(true);
@@ -129,6 +129,9 @@ public class MainActivity extends ActionBarActivity {
 
         } else if (id == R.id.action_faq) {
 
+        }else if(id == R.id.action_calorie){
+            Intent intent = new Intent (this, CalorieCounterActivity.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
