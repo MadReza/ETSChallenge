@@ -88,9 +88,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Done"
-        android:id="@+id/button2"
+        android:id="@+id/btn_done"
         android:layout_alignParentBottom="true"
         android:background="@android:color/white"
+        android:onClick="done"
         android:textColor="#FF3A8AEC"/>
 
 
