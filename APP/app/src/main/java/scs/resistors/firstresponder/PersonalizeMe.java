@@ -1,17 +1,38 @@
 package scs.resistors.firstresponder;
 
-import android.support.v7.app.ActionBarActivity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class PersonalizeMe extends ActionBarActivity {
+    public static final String SETTINGS_INFORMATION = "SETTINGS_INFORMATION";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personalize_me);
+        SharedPreferences settings = getSharedPreferences(PersonalizeMe.SETTINGS_INFORMATION, MODE_PRIVATE);
+        EditText editText = (EditText) findViewById(R.id.editTextPersonalize);
+        editText.setText(settings.getString("information","No information available."));
+
+        Button submitButton = (Button) findViewById(R.id.buttonPersonalize);
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences settings = getSharedPreferences(PersonalizeMe.SETTINGS_INFORMATION, MODE_PRIVATE);
+                String str = ((EditText) findViewById(R.id.editTextPersonalize)).getText().toString();
+                SharedPreferences.Editor edit = settings.edit();
+                edit.putString("information",str);
+                edit.apply();
+                Toast.makeText(PersonalizeMe.this, "Information Saved.", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
 
