@@ -68,8 +68,8 @@ public class MainActivity extends ActionBarActivity {
         FAQImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent intent = new Intent(getApplicationContext(), FAQActivity.class);
-                //startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(), FAQActivity.class);
+                startActivity(intent);
             }
         });
     }
