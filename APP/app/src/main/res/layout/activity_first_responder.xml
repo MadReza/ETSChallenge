@@ -14,9 +14,9 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_margin="10dp"
-        android:textSize="30dp"
+        android:textSize="24dp"
         android:gravity="center"
-        android:text="PANICK MODE"
+        android:text="Press on Red Button to Trigger The Emergency Action"
         android:textColor="#FF3A8AFF"
         android:paddingBottom="20dp"/>
 
