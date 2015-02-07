@@ -17,7 +17,7 @@
         </activity>
         <activity
             android:name=".DidYouKnowActivity"
-            android:label="@string/title_activity_did_you_know"
+            android:label="BACK TO PANICK MODE!"
             android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

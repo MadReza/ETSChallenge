@@ -36,4 +36,5 @@ public class DidYouKnowActivity extends ActionBarActivity {
         };
         showFactButton.setOnClickListener(listener);
     }
+    // TODO: remove the shitty bar at the top
 }
