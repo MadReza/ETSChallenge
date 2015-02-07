@@ -38,6 +38,17 @@ public class InfoDisplayActivity extends Activity
     }
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        // Add contacts from shared prefs
+        SharedPreferences settings = getPreferences(MODE_PRIVATE);
+        contacts.clear();
+        for(int i = 1; i <= 3; i++)
+            getContact(settings, "contact"+i+"name","contact"+i+"phone");
+    }
+
+    @Override
     public void onCreate(Bundle icicle)
     {
         super.onCreate(icicle);
