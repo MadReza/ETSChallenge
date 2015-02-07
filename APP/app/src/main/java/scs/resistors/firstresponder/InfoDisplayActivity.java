@@ -42,7 +42,8 @@ public class InfoDisplayActivity extends Activity
         super.onRestart();
 
         // Add contacts from shared prefs
-        SharedPreferences settings = getPreferences(MODE_PRIVATE);
+        SharedPreferences settings = getSharedPreferences(EmergencyContacts.SETTINGS_CONTACT, MODE_PRIVATE);
+
         contacts.clear();
         for(int i = 1; i <= 3; i++)
             getContact(settings, "contact"+i+"name","contact"+i+"phone");
@@ -55,12 +56,6 @@ public class InfoDisplayActivity extends Activity
 
         // Sets the View Layer
         setContentView(R.layout.activity_info_display);
-
-        // Add contacts from shared prefs
-        SharedPreferences settings = getPreferences(MODE_PRIVATE);
-
-        for(int i = 1; i <= 3; i++)
-            getContact(settings, "contact"+i+"name","contact"+i+"phone");
 
         // Create the ListView Adapter
         adapter = new SeparatedListAdapter(this);
