@@ -8,6 +8,6 @@
     <string name="login_title">Login</string>
     <string name="login_username">Username:</string>
     <string name="login_password">Password:</string>
-    <string name="login_no_account">Don't have an account?</string>
+    <string name="login_no_account">Don\'t have an account?</string>
     <string name="login_register">Register</string>
 </resources>
