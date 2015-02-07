@@ -17,7 +17,7 @@
         android:textSize="24dp"
         android:gravity="center"
         android:text="Press on Red Button to Trigger The Emergency Action"
-        android:textColor="#FF3A8AFF"
+        android:textColor="#FF3A8AEC"
         android:paddingBottom="20dp"/>
 
     <Button

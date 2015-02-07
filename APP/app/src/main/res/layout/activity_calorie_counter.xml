@@ -1,7 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingBottom="16dp"
     android:orientation="vertical"
     tools:context="scs.resistors.firstresponder.CalorieCounterActivity">
 
@@ -13,7 +14,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:textSize="25sp" />
+        android:textSize="25sp"
+        android:textColor="#FF3A8AFF"/>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -70,7 +72,8 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/calorie_total"
             android:id="@+id/textViewCalorieTotalTitle"
-            android:layout_weight="0.70" />
+            android:layout_weight="0.70"
+            android:textColor="#FF3A8AEC"/>
 
         <TextView
             android:layout_width="wrap_content"
