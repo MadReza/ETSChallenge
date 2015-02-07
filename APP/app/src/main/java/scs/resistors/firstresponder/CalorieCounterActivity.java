@@ -16,9 +16,9 @@ import java.util.HashMap;
 
 public class CalorieCounterActivity extends ActionBarActivity {
 
-    private static HashMap<String, Double> activitiesMap = new HashMap<String,Double>();
-    private static String[] ACTIVITIES_NAMES = {"Running","Wrestling","Walking","Swimming","Bicycle","Roller-blade"};
-    private static double[] ACTIVITIES_CALS_PER_MIN= {9.38, 7.03, 2.86, 8.22, 4.7, 14.06};
+    private static HashMap<String, Double> activitiesMap = new HashMap<String, Double>();
+    private static String[] ACTIVITIES_NAMES = {"Running", "Wrestling", "Walking", "Swimming", "Bicycle", "Roller-blade"};
+    private static double[] ACTIVITIES_CALS_PER_MIN = {9.38, 7.03, 2.86, 8.22, 4.7, 14.06};
 
     private ArrayList<String> listViewContents = new ArrayList<String>();
     private ArrayList<String> listViewContentsNames = new ArrayList<String>();
@@ -29,14 +29,14 @@ public class CalorieCounterActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calorie_counter);
 
-        for(int i = 0; i < ACTIVITIES_NAMES.length;i++)
+        for (int i = 0; i < ACTIVITIES_NAMES.length; i++)
             activitiesMap.put(ACTIVITIES_NAMES[i], ACTIVITIES_CALS_PER_MIN[i]);
         final Spinner spinnerActivities = (Spinner) findViewById(R.id.spinnerCalorieActivities);
 
         ListView listView = (ListView) findViewById(R.id.listViewCalorieActivities);
-        listView.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,listViewContents));
+        listView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listViewContents));
 
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item ,ACTIVITIES_NAMES);
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, ACTIVITIES_NAMES);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerActivities.setAdapter(spinnerAdapter);
 
@@ -50,7 +50,7 @@ public class CalorieCounterActivity extends ActionBarActivity {
                 listViewContentsNames.add(name);
                 listViewContentsMinutes.add(minutes);
 
-                listViewContents.add(minutes+ " minutes of " + name);
+                listViewContents.add(minutes + " minutes of " + name);
 
                 recalculateTotalCaloriesBurnt();
                 ListView listView = (ListView) findViewById(R.id.listViewCalorieActivities);
@@ -60,13 +60,13 @@ public class CalorieCounterActivity extends ActionBarActivity {
         recalculateTotalCaloriesBurnt();
     }
 
-    private void recalculateTotalCaloriesBurnt(){
+    private void recalculateTotalCaloriesBurnt() {
         double totalCalories = 0;
         ListView listView = (ListView) findViewById(R.id.listViewCalorieActivities);
-        for(int i = 0; i < listViewContentsMinutes.size(); i++)
-                totalCalories += (activitiesMap.get(listViewContentsNames.get(i)) * listViewContentsMinutes.get(i));
+        for (int i = 0; i < listViewContentsMinutes.size(); i++)
+            totalCalories += (activitiesMap.get(listViewContentsNames.get(i)) * listViewContentsMinutes.get(i));
         // put new value in text view
         TextView calorieTextView = (TextView) findViewById(R.id.textViewCalorieTotal);
-        calorieTextView.setText(String.format("%.2f",totalCalories));
+        calorieTextView.setText(String.format("%.2f", totalCalories));
     }
 }
