@@ -19,7 +19,6 @@ public class DidYouKnowActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_did_you_know);
-        getActionBar().hide();
 
         final TextView factLabel = (TextView) findViewById(R.id.funFactText);
         final Button showFactButton = (Button) findViewById(R.id.showFactButton);

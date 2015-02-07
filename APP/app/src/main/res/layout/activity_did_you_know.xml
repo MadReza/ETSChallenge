@@ -19,7 +19,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ants stretch when they wake up in the morning"
+        android:text="All these facts are made up and have no real connection with reality ;)"
         android:id="@+id/funFactText"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
