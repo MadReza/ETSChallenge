@@ -1,8 +1,10 @@
 package scs.resistors.firstresponder;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -48,6 +50,7 @@ public class InfoDisplayActivity extends Activity
         ((ListView) this.findViewById(R.id.infoList)).invalidateViews();
     }
 
+    private PowerManager.WakeLock wakeLock = null;
     @Override
     public void onCreate(Bundle icicle)
     {
@@ -56,6 +59,10 @@ public class InfoDisplayActivity extends Activity
         // Sets the View Layer
         setContentView(R.layout.activity_info_display);
 
+        // WAKE LOCK
+        PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+        wakeLock = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK,"HealthToolbox");
+        wakeLock.acquire();
 
         // Add contacts from shared prefs
         SharedPreferences settings = getSharedPreferences(EmergencyContacts.SETTINGS_CONTACT, MODE_PRIVATE);
@@ -92,6 +99,13 @@ public class InfoDisplayActivity extends Activity
                 Toast.makeText(getApplicationContext(), item, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(wakeLock != null)
+            wakeLock.release();
     }
 
     private void getContact(SharedPreferences settings, String nameStr, String phoneStr){
