@@ -19,7 +19,7 @@ public class FirstResponder extends ActionBarActivity {
         setContentView(R.layout.activity_first_responder);
         counter = 0;
 
-        Button personalizeButton = (Button) findViewById(R.id.personalizeButton);
+        final Button personalizeButton = (Button) findViewById(R.id.personalizeButton);
         personalizeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -28,7 +28,7 @@ public class FirstResponder extends ActionBarActivity {
             }
         });
 
-        Button erContactsButton = (Button) findViewById(R.id.erContactsButton);
+        final Button erContactsButton = (Button) findViewById(R.id.erContactsButton);
         erContactsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,11 +40,19 @@ public class FirstResponder extends ActionBarActivity {
         final ImageView panicImageView = (ImageView) findViewById(R.id.panic);
         final TextView cancelTextView = (TextView) findViewById(R.id.cancelTextView);
         cancelTextView.setVisibility(View.INVISIBLE);
+
+        panicImageView.setClickable(true);
+        erContactsButton.setClickable(true);
+        personalizeButton.setClickable(true);
+
         panicImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 cancelTextView.setVisibility(View.VISIBLE);
                 panicImageView.setClickable(false);
+                erContactsButton.setClickable(false);
+                personalizeButton.setClickable(false);
+
                 // Trigger sound shit
                 new CountDownTimer(30000, 1000) {
                     public void onTick(long millisUntilFinished) {
